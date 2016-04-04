@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="photoApp">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ristorante Con Fusion: Menu</title>
+  <link href="styles/mystyles.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container" ng-controller="PhotoGalleryController">
+    <h2 class="question">Хотите с <span id="gender"></span> встретиться?</h2>
+    <div class="buttons-container" ng-class="{'disabled': finished}">
+      <button id="dismiss" type="button" ng-click="getData('dismiss')">Пропустить</button>
+      <button id="disagree" type="button" ng-click="getData('no')">Нет</button>
+      <button id="agree" type="button" ng-click="getData('yes')">Да</button>
+    </div>
+    <div class="gallery">
+      <div class="main-image" id="mainImageContainer">
+        <img ng-src="{{mainImageUrl}}" alt="">
+      </div>
+      <div class="info">
+        <a href="javascript: void(0)" ng-bind="data['name']"></a>,
+        <span ng-bind="data['age']"></span>,
+        <span ng-bind="data['cityName']"></span>
+      </div>
+      <div class="thumbnails flex-container" id="thumbsContainer">
+        <img class="thumbnail" ng-class="{'active': $index == activeInd}" ng-repeat="n in data['photos'] track by $index" ng-src="{{data['photos'][$index].size48}}" ng-click="setMainImage($index)" alt="">
+      </div>
+    </div>
+    <div class="message-container" id="statistics" ng-show="buttonClicksNum >= 5">
+      Пропущено: {{dismiss}}, отказов: {{disagree}}, согласий: {{agree}}
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>
