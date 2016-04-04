@@ -49,6 +49,7 @@ angular.module('photoApp', [])
       $scope.agree = 0;
       $scope.disagree = 0;
       $scope.finished = false;
+      $scope.gender = $scope.data.gender;
 
       var statistics = function(buttonType) {
         if (buttonType == 'yes') {
@@ -65,6 +66,7 @@ angular.module('photoApp', [])
           $scope.data = serverData.pop();
           $scope.mainImageUrl = $scope.data.photos[0].sizeBox;
           $scope.activeInd = 0;
+          $scope.gender = $scope.data.gender;
           $scope.buttonClicksNum += 1;
         } else {
           $scope.finished = true;
